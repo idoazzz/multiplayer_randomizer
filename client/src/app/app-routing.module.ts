@@ -4,7 +4,7 @@ import { StartPageComponent } from './pages/start-page/start-page.component';
 
 const routes: Routes = [
   { 
-    path: 'start', component: StartPageComponent ,
+    path: 'start', component: StartPageComponent,
   },
 ];
 
