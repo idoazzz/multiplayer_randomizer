@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StartupMenuComponent } from './components/startup-menu/startup-menu.component';
 import { StartupButtonComponent } from './components/startup-button/startup-button.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,7 +13,8 @@ import { StartupButtonComponent } from './components/startup-button/startup-butt
     StartupButtonComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
   exports: [
     StartupMenuComponent,

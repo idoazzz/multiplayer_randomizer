@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartupMenuComponent implements OnInit {
 
+  buttons = [
+    {
+      text: "Start",
+      uri: "/room",
+    },
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
