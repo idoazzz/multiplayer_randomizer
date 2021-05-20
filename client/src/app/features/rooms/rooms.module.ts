@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RoomsUserComponent } from './components/rooms-user/rooms-user.component';
+import { RoomsUserAvatarComponent } from './components/rooms-user/rooms-user-avatar.component';
 
 
 @NgModule({
   declarations: [
-    RoomsUserComponent
+    RoomsUserAvatarComponent
   ],
   imports: [
     CommonModule,
+  ],
+  exports: [
+    RoomsUserAvatarComponent
   ]
 })
 export class RoomsModule { }
