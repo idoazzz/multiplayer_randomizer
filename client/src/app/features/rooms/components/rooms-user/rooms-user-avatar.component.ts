@@ -15,9 +15,10 @@ export class RoomsUserAvatarComponent extends AbstractUserAvatarComponent {
       document.getElementsByTagName("body"), "mousemove"
     ).pipe(map(
       (e: Event) => {
+          const newEvent: MouseEvent = (e as MouseEvent);
           return {
-            x: (e as MouseEvent).clientX, 
-            y: (e as MouseEvent).clientY
+            x: newEvent.clientX, 
+            y: newEvent.clientY
           };
       }
     ));
