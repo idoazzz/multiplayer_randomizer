@@ -1,27 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { fromEvent, Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { fromEvent, Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Point, AbstractUserAvatarComponent } from './abstract-avatar-component'
+
 
 @Component({
   selector: 'user-avatar',
   templateUrl: './rooms-user-avatar.component.html',
   styleUrls: ['./rooms-user-avatar.component.sass']
 })
-export class RoomsUserAvatarComponent implements OnInit {
-
-  user: string = "User Fixed";
-  top: string = "0px";
-  left: string = "0px";
-
-  constructor() { }
-
-  ngOnInit(): void {
-    const movements$: Observable<Event> = fromEvent(document.getElementsByTagName("body"), "mousemove")
-    movements$.subscribe(
-      event=>{
-        this.left = `${(event as MouseEvent).clientX}px`;
-        this.top = `${(event as MouseEvent).clientY}px`;
+export class RoomsUserAvatarComponent extends AbstractUserAvatarComponent {
+  getMovementObservable(): Observable<Point> {
+    return fromEvent(
+      document.getElementsByTagName("body"), "mousemove"
+    ).pipe(map(
+      (e: Event) => {
+          return {
+            x: (e as MouseEvent).clientX, 
+            y: (e as MouseEvent).clientY
+          };
       }
-    )
+    ));
   }
-
 }
