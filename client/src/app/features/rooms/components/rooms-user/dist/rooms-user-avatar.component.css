@@ -1,0 +1,12 @@
+.avatar {
+  display: flex;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #f1e6ff;
+  border-bottom: 0.5em solid #c8bdd6;
+  align-items: center;
+  justify-content: center;
+}
+.avatar span {
+  opacity: 0.5;
+}
