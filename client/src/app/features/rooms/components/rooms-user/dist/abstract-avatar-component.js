@@ -14,11 +14,11 @@ var AbstractUserAvatarComponent = /** @class */ (function () {
     function AbstractUserAvatarComponent() {
         var _this = this;
         this.SIDES_MARGINS = 75;
+        this.width = "100px";
+        this.height = "100px";
         this.user = "User Fixed";
         this.top = "0px";
         this.left = "0px";
-        this.width = "100px";
-        this.height = "100px";
         this.destroyed$ = new rxjs_1.Subject();
         this.movements$ = this.getMovementObservable();
         this.movements$.pipe(operators_1.takeUntil(this.destroyed$)).subscribe(function (point) { return _this.moveTo(point); });

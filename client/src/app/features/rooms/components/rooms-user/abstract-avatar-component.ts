@@ -13,12 +13,12 @@ export interface Point {
 export abstract class AbstractUserAvatarComponent implements OnDestroy {
 
   SIDES_MARGINS: number = 75;
+  width: string = "100px";
+  height: string = "100px";
 
   @Input() user: string = "User Fixed";
   top: string = "0px";
   left: string = "0px";
-  width: string = "100px";
-  height: string = "100px";
   movements$: Observable<Point>;
   destroyed$: Subject<boolean> = new Subject<boolean>();
 
