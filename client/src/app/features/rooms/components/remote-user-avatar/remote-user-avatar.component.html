@@ -1,0 +1,20 @@
+<div class="container" 
+[style.left]="this.left" 
+[style.top]="this.top"
+[style.height]="this.height" 
+[style.width]="this.width">
+
+    <div class="avatar-border" 
+    [style.borderColor]="this.color"
+    [style.height]="this.height"
+    [style.width]="this.width"></div>
+    
+    <div class="avatar" 
+    [style.backgroundColor]="this.color"
+    [style.height]="this.height" 
+    [style.width]="this.width">
+        <span>
+            {{username}}
+        </span>
+    </div>
+</div>

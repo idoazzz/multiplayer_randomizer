@@ -1,0 +1,7 @@
+<local-user-avatar username="You"></local-user-avatar>
+<remote-user-avatar 
+    *ngFor="let user of users" 
+    [color]="user.color" 
+    [username]="user.name"
+>
+</remote-user-avatar>

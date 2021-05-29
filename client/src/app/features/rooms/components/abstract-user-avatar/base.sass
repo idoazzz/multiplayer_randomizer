@@ -1,0 +1,36 @@
+.container
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+
+    .avatar-border
+        position: absolute
+        padding: 3px
+        animation: opacity 1s linear infinite
+        border-radius: 50%
+        border: 5px solid grey
+
+    
+    .avatar
+        display: flex
+        position: absolute
+        border-radius: 50%
+        align-items: center
+        justify-content: center
+
+        span
+            color: black
+            opacity: 0.5
+
+    
+    @keyframes opacity  
+        0%
+            opacity: 0.3
+
+        100% 
+            opacity: 0
+
+
+.winner 
+    background: gold
