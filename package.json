@@ -1,0 +1,19 @@
+{
+  "name": "users_randomizer",
+  "version": "1.0.0",
+  "description": "Online web-based platform for choosing random user in a shared room.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idoazzz/users_randomizer.git"
+  },
+  "author": "Ido Azulay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idoazzz/users_randomizer/issues"
+  },
+  "homepage": "https://github.com/idoazzz/users_randomizer#readme"
+}
