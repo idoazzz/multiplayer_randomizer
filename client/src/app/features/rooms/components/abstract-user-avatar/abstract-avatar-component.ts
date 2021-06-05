@@ -1,12 +1,9 @@
 import { OnDestroy, Component, Input } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
+import { RoomStateService } from '../../services/room-state.service';
 import { RoomWebsocketService } from '../../services/room-websocket.service';
-
-export interface Point {
-  x: number
-  y: number
-}
+import { Point } from '../types';
 
 @Component({
   template: ''
@@ -14,7 +11,8 @@ export interface Point {
 export abstract class AbstractUserAvatarComponent implements OnDestroy {
   @Input() color: string = "";
   @Input() username: string = "";
-
+  @Input() winner: boolean = false;
+  
   SIDES_MARGINS: number = 75;
   width: string = "100px";
   height: string = "100px";
@@ -22,20 +20,29 @@ export abstract class AbstractUserAvatarComponent implements OnDestroy {
   top: string = "0px";
   left: string = "0px";
 
+  styles: any = {
+    "avatar": true,
+  }
+
   destroyed$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(protected websocketService: RoomWebsocketService) {}
+  constructor(protected roomStateService: RoomStateService, protected websocketService: RoomWebsocketService) {}
   abstract getMovementsObservable(): Observable<Point>;
 
   ngOnInit(): void {
-    console.log(this.username);
+    console.log(`Creating user avatar: ${this.username}`);
     this.getMovementsObservable().pipe(
       takeUntil(this.destroyed$),
     ).subscribe(
       point => this.moveTo(point)
     );
+
+    this.roomStateService.newWinner$.subscribe(winner => {
+      if(winner === this.username){
+        this.styles["winner"] = true;
+      }
+    });
   }
-  
 
   moveTo(point: Point): void {
     if (point.x <= this.SIDES_MARGINS || point.x >= document.body.clientWidth - this.SIDES_MARGINS) {

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { concatMap, filter, find, map, tap } from 'rxjs/operators';
-import { AbstractUserAvatarComponent, Point } from '../abstract-user-avatar/abstract-avatar-component';
+import { AbstractUserAvatarComponent } from '../abstract-user-avatar/abstract-avatar-component';
+import { Point } from '../types';
 
 
 @Component({
@@ -17,8 +18,7 @@ export class RemoteUserAvatarComponent extends AbstractUserAvatarComponent {
   }
 
   getMovementsObservable(): Observable<Point> {
-    return this.websocketService.messages$.pipe(
-      map(message => message.users),
+    return this.roomStateService.remoteUsers$.pipe(
       concatMap(users => from(users)),
       filter(user => user.name === this.username),
       map(user => user ? user.location : this.OUTSIDE_SCREEN_POSITION),

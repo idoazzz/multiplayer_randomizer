@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
 import { fromEvent, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AbstractUserAvatarComponent, Point } from '../abstract-user-avatar/abstract-avatar-component';
+import { AbstractUserAvatarComponent } from '../abstract-user-avatar/abstract-avatar-component';
+import { Point } from '../types';
 
 
 @Component({

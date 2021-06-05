@@ -1,18 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ConnectableObservable , Subject, interval } from 'rxjs';
-import { map, tap, multicast } from 'rxjs/operators';
-import { Point } from '../components/abstract-user-avatar/abstract-avatar-component';
-
-export interface User { 
-  name: string
-  color: string
-  location: Point
-}
-
-export interface RoomState {
-  users: User[]
-}
+import { Subject, interval } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { RoomState } from '../components/types';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +10,14 @@ export interface RoomState {
 export class RoomWebsocketService {
   // TODO: https://javascript-conference.com/blog/real-time-in-angular-a-journey-into-websocket-and-rxjs/
   
+  private destroyed$: Subject<boolean> = new Subject<boolean>();
   public messages$: Observable<RoomState> = interval(20).pipe(
     map(time => {
         return {
+          winner: time > 200 ? "Ido" : "",
           users: [
             {
-              name: "ido",
+              name: "Yarin",
               color: "#3498db",
               location: {
                 x: time%300,
@@ -33,7 +25,15 @@ export class RoomWebsocketService {
               }
             },
             {
-              name: "almog",
+              name: "Ido",
+              color: "grey",
+              location: {
+                x: time%300,
+                y: time%300,
+              }
+            },
+            {
+              name: "Almog",
               color: "#2ecc71",
               location: {
                 x: 300-time%300,
@@ -44,10 +44,17 @@ export class RoomWebsocketService {
         }
       }
     ),
+    takeUntil(this.destroyed$),
   );
 
+ 
   public connect(): void {}
   public sendMessage(message: any): void {}
   public getNewWebsocket(): any{}
-  public close(): void {}
+  public close(): void {
+    console.log("Closing room WS");
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
+
 }

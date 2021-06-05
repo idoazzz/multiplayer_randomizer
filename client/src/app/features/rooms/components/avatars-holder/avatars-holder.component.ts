@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RoomWebsocketService, User } from '../../services/room-websocket.service';
-import { distinctUntilChanged, map, skipWhile, tap } from 'rxjs/operators';
-
+import { RoomStateService } from '../../services/room-state.service';
+import { RoomWebsocketService } from '../../services/room-websocket.service';
+import { User } from '../types';
 @Component({
   selector: 'avatars-holder',
   templateUrl: './avatars-holder.component.html',
@@ -10,28 +10,33 @@ import { distinctUntilChanged, map, skipWhile, tap } from 'rxjs/operators';
 })
 export class AvatarsHolderComponent implements OnInit {
   // TODO: Tranform to User type
+  localUsername : string = "";   
   users: User[] = [];
+  remoteUsersMetadata$: Observable<User[]> = new Observable();
+  winner: string = "";
 
-  constructor(private websocketService: RoomWebsocketService) { }
+  constructor(private roomStateService: RoomStateService) { }
+
+  setWinner(winner: string | undefined): void{
+    if(winner === undefined){
+      return;
+    }
+    this.winner = winner;
+  }
+
+  getWinner(): string{
+    return this.winner === undefined ? "" : this.winner;
+  }
 
   ngOnInit(): void {
-     this.websocketService.messages$.pipe(
-      map(message => message.users),
-      distinctUntilChanged((prev: User[], curr: User[]) => this.compareUsers(prev, curr)),
-    ).subscribe(users => {
-        if(!this.compareUsers(this.users, users)){
-          this.users = users;
-          console.dir(`New users: ${JSON.stringify(this.getUsernames(this.users))}`);
-        }
-    });
+    console.log("Init avatars holder.");
+    this.remoteUsersMetadata$ = this.roomStateService.remoteUsersMetadata$;
+    this.localUsername = this.roomStateService.localUsername;    
+    this.roomStateService.newWinner$.subscribe(
+      winner => {
+        this.setWinner(winner);
+      }
+    );
   }
 
-  // TODO: Move to another place.
-  private getUsernames(users: User[]) { 
-    return users.map(user => user.name);
-  }
-
-  private compareUsers(a: User[], b:User[]){
-    return JSON.stringify(this.getUsernames(a)) === JSON.stringify(this.getUsernames(b));
-  }
 }
