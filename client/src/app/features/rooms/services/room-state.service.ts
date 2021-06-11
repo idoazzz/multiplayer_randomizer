@@ -36,9 +36,6 @@ export class RoomStateService {
       map(message => message.winner),
       distinctUntilChanged(),
       filter(winner => winner !== undefined),
-
-      // tap(_ => this.roomWebsocketService.close()),
-      // tap(winner => console.log(`The game finished. The winner is ${winner}`)),
     )
   }
 
