@@ -5,6 +5,7 @@ import { RemoteUserAvatarComponent } from './components/remote-user-avatar/remot
 import { AvatarsHolderComponent } from './components/avatars-holder/avatars-holder.component';
 import { RoomWebsocketService } from './services/room-websocket.service';
 import { RoomStateService } from './services/room-state.service';
+import { WinnerSignComponent } from './components/winner-sign/winner-sign.component';
 
 @NgModule({
   providers: [
@@ -15,12 +16,14 @@ import { RoomStateService } from './services/room-state.service';
     LocalUserAvatarComponent,
     RemoteUserAvatarComponent,
     AvatarsHolderComponent,
+    WinnerSignComponent,
   ],
   imports: [
     CommonModule,
   ],
   exports: [
     AvatarsHolderComponent,
+    WinnerSignComponent,
   ]
 })
 export class RoomsModule { }

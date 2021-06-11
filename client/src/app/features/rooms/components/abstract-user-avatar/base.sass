@@ -3,6 +3,7 @@
     display: flex
     justify-content: center
     align-items: center
+    z-index: -2
 
     .avatar-border
         position: absolute
@@ -10,7 +11,7 @@
         animation: opacity 1s linear infinite
         border-radius: 50%
         border: 5px solid grey
-
+        z-index: -2
     
     .avatar
         display: flex
@@ -19,6 +20,13 @@
         align-items: center
         justify-content: center
         cursor: pointer 
+
+        -webkit-touch-callout: none 
+        -webkit-user-select: none
+        -khtml-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        user-select: none           
 
         span
             color: black
@@ -32,5 +40,9 @@
             opacity: 0
 
 
-.winner 
-    background-color: gold !important
+.winner
+    transition: all 1s
+    background-color: #FFD700 !important
+    height: 300% !important
+    width: 300% !important
+    z-index: -2

@@ -8,10 +8,10 @@ import { Point } from '../types';
 @Component({
   template: ''
 })
-export abstract class AbstractUserAvatarComponent implements OnDestroy {
-  @Input() color: string = "";
-  @Input() username: string = "";
+export abstract class AbstractUserAvatarComponent {
   @Input() winner: boolean = false;
+  @Input() color: string | undefined = undefined;
+  @Input() username: string | undefined = undefined;
   
   SIDES_MARGINS: number = 75;
   width: string = "100px";
@@ -53,7 +53,7 @@ export abstract class AbstractUserAvatarComponent implements OnDestroy {
     }
 
     this.left = `${point.x - (this.getWidth() / 2)}px`;
-    this.top = `${point.y - (this.getHeight() / 2)}px`;
+    this.top = `${point.y - 2 * (this.getHeight() / 2)}px`;
   }
 
   getHeight(): number {

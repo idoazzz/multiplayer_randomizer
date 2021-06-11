@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { combineLatest, forkJoin, from, Observable } from 'rxjs';
-import { combineAll, concatMap, distinctUntilChanged, filter, map, tap } from 'rxjs/operators';
+import { combineAll, concatMap, distinctUntilChanged, filter, map, tap, share } from 'rxjs/operators';
 import { User } from '../components/types';
 import { RoomWebsocketService } from './room-websocket.service';
 
@@ -35,13 +35,11 @@ export class RoomStateService {
     this.newWinner$ = this.roomWebsocketService.messages$.pipe(
       map(message => message.winner),
       distinctUntilChanged(),
-      filter(winner => winner !== "")
-    )
+      filter(winner => winner !== undefined),
 
-    this.newWinner$.subscribe(winner => {
-      console.log(`The game finished. The winner is ${winner}`);
-      this.roomWebsocketService.close();
-    })
+      // tap(_ => this.roomWebsocketService.close()),
+      // tap(winner => console.log(`The game finished. The winner is ${winner}`)),
+    )
   }
 
   public getUsernames(users: User[]) { 

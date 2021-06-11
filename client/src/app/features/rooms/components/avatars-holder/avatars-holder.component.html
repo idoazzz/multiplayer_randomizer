@@ -1,6 +1,5 @@
 <local-user-avatar 
     [username]="localUsername"
-    [winner]="localUsername === winner"
 >
 </local-user-avatar>
 
@@ -8,6 +7,5 @@
     *ngFor="let user of (remoteUsersMetadata$ | async)" 
     [color]="user.color" 
     [username]="user.name"
-    [winner]="user.name === winner"
 >
 </remote-user-avatar>
