@@ -14,6 +14,7 @@ export class RoomWebsocketService {
   public messages$: Observable<RoomState> = interval(20).pipe(
     map(time => {
         return {
+          id: "12345678",
           winner: time > 200 ? "Ido" : "",
           users: [
             {

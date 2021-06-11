@@ -10,6 +10,7 @@ export interface User {
 }
 
 export interface RoomState {
+  id: string,
   winner: string,
   users: User[]
 }
