@@ -14,6 +14,7 @@ export class RoomStateService {
   public remoteUsersMetadata$: Observable<User[]>;
   public remoteUsers$: Observable<User[]>;
   public newWinner$: Observable<string>;
+  public roomId: string | undefined = undefined; 
   
 
   constructor(private roomWebsocketService: RoomWebsocketService) { 
@@ -37,6 +38,7 @@ export class RoomStateService {
       distinctUntilChanged(),
       filter(winner => winner !== undefined),
     )
+    
   }
 
   public getUsernames(users: User[]) { 

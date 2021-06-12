@@ -9,8 +9,12 @@ export class StartupMenuComponent implements OnInit {
 
   buttons = [
     {
-      text: "Start",
+      text: "New Room",
       uri: "/room",
+    },    
+    {
+      text: "Join Room",
+      uri: "/",
     },
   ]
 

@@ -20,5 +20,9 @@ export class WinnerSignComponent implements OnInit {
       }
     );
   }
+  
+  gotWinner(){
+    return !(this.name === undefined || this.name === "");
+  }
 
 }

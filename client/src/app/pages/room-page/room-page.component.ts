@@ -8,8 +8,11 @@ import { RoomStateService } from 'src/app/features/rooms/services/room-state.ser
 export class RoomPageComponent implements OnInit {
 
   public winner: string | undefined = undefined;
+  public room_id: string | undefined = undefined;
 
   constructor(private roomStateService: RoomStateService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.roomStateService
+  }
 }
