@@ -37,13 +37,12 @@ export class RoomStateService {
       map(message => message.winner),
       distinctUntilChanged(),
       filter(winner => winner !== undefined),
-    )
+    );
     
     this.roomId$ = this.roomWebsocketService.messages$.pipe(
       map(message => message.id),
       distinctUntilChanged(),
-    )
-    
+    );
   }
 
   public sendRestart() {
