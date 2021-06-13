@@ -7,12 +7,15 @@ import { RoomStateService } from 'src/app/features/rooms/services/room-state.ser
 })
 export class RoomPageComponent implements OnInit {
 
-  public winner: string | undefined = undefined;
-  public room_id: string | undefined = undefined;
+  roomId: string | undefined = undefined;
 
   constructor(private roomStateService: RoomStateService) {}
 
   ngOnInit(): void {
-    this.roomStateService
+    this.roomStateService.roomId$.subscribe(id => this.roomId = id);
+  }
+
+  sendRestart(): void {
+    this.roomStateService.sendRestart();
   }
 }

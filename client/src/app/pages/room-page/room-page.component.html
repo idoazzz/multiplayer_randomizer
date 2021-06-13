@@ -1,10 +1,16 @@
 <div class="menu">
-    <div class="logo">
-        <a routerLink="/" routerLinkActive="active"><img src="assets/logo.png"/></a>
+    <div class="left">
+        <div class="logo">
+            <a routerLink="/" routerLinkActive="active"><img src="assets/cropped_logo.png"/></a>
+        </div>
+        <div class="buttons">
+            <a class="button" routerLink="/" routerLinkActive="active">Back</a>
+            <a class="button" onclick="sendRestart()">Restart</a>
+        </div>
     </div>
-    <a class="button" routerLink="/" routerLinkActive="active">Back</a>
-    <a class="button">Restart</a>
-    <span class="room_id">8bf3060e6</span>
+    <div class="right">
+        <span class="roomId">{{ roomId }}</span>
+    </div>
 </div>
 <avatars-holder></avatars-holder>
 <winner-sign></winner-sign>

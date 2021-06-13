@@ -1,35 +1,61 @@
+@import '../../../styles'
+
 .menu
     width: 100%
-    background-color: #f1faee
+    background-color: $menuBackgroundColor
     display: flex
     padding: 10px
-    height: 50px
+    height: $menuHeight
     align-items: center
+    flex-direction: row
     
-    .logo img
+    .left
+        display: flex
         padding: 10px
-        margin: 10px
-        height: 140px
-        width: auto
-    
-    .button
-        padding: 10px
-        margin: 10px
-        color: #01497c
-        font-size: 11pt
-        align-items: center
-        border-bottom: 5px solid transparent
-    
-    .room_id
-        color: #b7b7a4
-        letter-spacing: 1pt
-        padding: 10px
-        margin: 10px
-        font-size: 8pt
-        align-items: center
-        border-bottom: 5px solid transparent
-        margin-left: 20px
+        height: $menuHeight
+        flex: 1
+        flex-wrap: nowrap
+        flex-direction: row
+        align-content: center
         
-    .button:hover 
-        border-bottom: 5px solid #99d98c
+        .logo
+            flex: 2
+            width: 100px
+
+        .logo img
+            margin-left: 20px
+            height: $menuHeight - 5px
+            width: auto
+
+        .buttons
+            display: flex
+            align-items: center
+            flex: 3
+            padding: 10px
+            margin: 10px
+      
+            .button
+                padding: 10px
+                margin: 10px
+                color: $menuButtonsColor
+                font-size: 11pt
+                align-items: center
+                border-bottom: 5px solid transparent
         
+            .button:hover 
+                border-bottom: 5px solid $menuButtonsHoverColor
+        
+    .right    
+        display: flex
+        flex: 1
+        justify-content: flex-end
+
+        .roomId
+            color: $roomIdColor
+            letter-spacing: 1pt
+            padding: 10px
+            margin: 10px
+            font-size: 8pt
+            align-items: center
+            border-bottom: 5px solid transparent
+            margin-right: 50px    

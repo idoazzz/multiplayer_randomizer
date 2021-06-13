@@ -1,13 +1,37 @@
+//Backgrounds
+$startPageBackgroundImage: url("./assets/cool-background.png")
+$roomPageBackgroundImage: url("./assets/cool-room-background.png")
+
+// Rooms Page Colors
+$roomIdColor: #b7b7a4
+$menuBackgroundColor: #f1faee
+
+$menuButtonsColor: #696969
+$menuButtonsHoverColor: #99d98c
+
+// Startup Page Colors
+$buttonsBackgroundColor: #ffffff
+$buttonsBorderColor: rgb(153, 244, 155)
+$buttonsFontColor: rgb(0, 50, 0, 0.7)
+$buttonsHoverFontColor: #99d98c
+
+$menuBorderColor: #e1e1e1 
+$menuBackgroundColor: #ffffffcb
+$menuPageBackgroundColor: #f1faee
+$menuButtonsHoverColor: #99d98c
+
+// Sizes
+$menuHeight: 70px
+
 @mixin fullscreen
     margin: 0
     padding: 0 
     height: 100vh
 
 html 
-    font-family: 'Roboto', sans-serif
-    background-color: 96C0CE
+    font-family: 'Staatliches', cursive
+    background-image: $roomPageBackgroundImage
     overflow: hidden
-
     @include fullscreen
     
 body
